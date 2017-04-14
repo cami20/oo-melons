@@ -72,13 +72,13 @@ class GovernmentMelonOrder(AbstractMelonOrder):
 
     def mark_inspection(self, passed):
         """Record the fact than an order passed inspection."""
-        if passed:
-            self.passed_inspection = True
-        else:
-            self.passed_inspection = False
+
+        self.passed_inspection = passed
 
         return self.passed_inspection
 
+    # an alternative way to do this would be to use super to get get_total
+    # from AbstractMelonOrder and pass tax as = 0
     def get_total(self):
         base_price = 5
         if self.species == "christmas":
