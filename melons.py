@@ -59,3 +59,30 @@ class InternationalMelonOrder(AbstractMelonOrder):
             return total + 3
         else:
             return total
+
+
+class GovernmentMelonOrder(AbstractMelonOrder):
+    """A melon order with the US government."""
+
+    def __init__(self, species, qty):
+        """Initialize melon order attributes."""
+        #super gets these init attributes from AbstractMelonOrder
+        super(GovernmentMelonOrder, self).__init__(species, qty, "government", None)
+        self.passed_inspection = False
+
+    def mark_inspection(self, passed):
+        """Record the fact than an order passed inspection."""
+        if passed:
+            self.passed_inspection = True
+        else:
+            self.passed_inspection = False
+
+        return self.passed_inspection
+
+    def get_total(self):
+        base_price = 5
+        if self.species == "christmas":
+            base_price = base_price * 1.5
+        total = self.qty * base_price
+
+        return total
