@@ -1,5 +1,7 @@
 """Classes for melon orders."""
 
+from random import choice as rand_choice
+
 class AbstractMelonOrder(object):
     """An abstract base class from which other Melon Orders inherit."""
 
@@ -11,6 +13,14 @@ class AbstractMelonOrder(object):
         self.shipped = False
         self.order_type = order_type
         self.tax = tax
+
+    def get_base_price(self):
+        """Chooses random int to set base price."""
+
+        splurge_price = rand_choice(range(5, 10))
+
+        print splurge_price
+        return splurge_price
 
     def get_total(self):
         """Calculate price, including tax."""
