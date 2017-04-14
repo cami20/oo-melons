@@ -19,13 +19,12 @@ class AbstractMelonOrder(object):
 
         splurge_price = rand_choice(range(5, 10))
 
-        print splurge_price
         return splurge_price
 
     def get_total(self):
         """Calculate price, including tax."""
+        base_price = self.get_base_price()
 
-        base_price = 5
         if self.species == "christmas":
             base_price = base_price * 1.5
         total = (1 + self.tax) * self.qty * base_price
@@ -90,7 +89,8 @@ class GovernmentMelonOrder(AbstractMelonOrder):
     # an alternative way to do this would be to use super to get get_total
     # from AbstractMelonOrder and pass tax as = 0
     def get_total(self):
-        base_price = 5
+        base_price = self.get_base_price()
+
         if self.species == "christmas":
             base_price = base_price * 1.5
         total = self.qty * base_price
